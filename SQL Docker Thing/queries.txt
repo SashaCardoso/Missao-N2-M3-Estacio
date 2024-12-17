@@ -1,0 +1,15 @@
+SELECT * FROM individuals INNER JOIN users ON individuals.user_id = users.id
+
+SELECT * FROM companies INNER JOIN users ON companies.user_id = users.id
+
+SELECT p.name AS product_name, 
+       SUM(t.quantity * p.price) AS total_value
+FROM transactions t
+JOIN products p ON t.product_id = p.id
+GROUP BY p.id;
+
+SELECT p.name AS product_name,
+       SUM(t.quantity * p.price) / SUM(t.quantity) AS weighted_mean_price
+FROM transactions t
+JOIN products p ON t.product_id = p.id
+GROUP BY p.id;
